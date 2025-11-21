@@ -370,10 +370,10 @@
             day: "numeric"
         });
 
-        if (month === 10 && adventNames[day]) {
+        if (month === 11 && adventNames[day]) {
             nameText.textContent = adventNames[day];
             noticeText.textContent = "";
-        } else if (month === 10) {
+        } else if (month === 11) {
             nameText.textContent = "—";
             noticeText.textContent = "No name assigned for this December day.";
         } else {
@@ -382,7 +382,7 @@
         }
 
         // NEW: update subtitle based on day
-        if (month === 10 && adventSubtitles[day]) {
+        if (month === 11 && adventSubtitles[day]) {
             subtitleText.textContent = adventSubtitles[day];
         } else {
             subtitleText.textContent = "Jores Lab Christmas Calendar"; // fallback text
