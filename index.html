@@ -281,7 +281,7 @@
 <body>
   <div class="card">
     <div class="title">Advent</div>
-    <div class="subtitle">Boho Christmas Calendar</div>
+    <div class="subtitle">The Jores Lab Christmas Calendar</div>
     <div class="divider"></div>
 
     <div class="date" id="dateText"></div>
@@ -298,39 +298,36 @@
       <button class="btn btn-ghost" id="revealButton">
         ⟳ Recheck today
       </button>
-      <div class="hint">Just HTML &amp; JS – works on GitHub Pages</div>
+      <div class="hint"></div>
     </div>
   </div>
 
   <script>
     // Map day of December -> name
-    const adventNames = {
-      1: "Alice",
-      2: "Bob",
-      3: "Charlie",
-      4: "Diana",
-      5: "Eve",
-      6: "Frank",
-      7: "Grace",
-      8: "Hugo",
-      9: "Ivy",
-      10: "Jack",
-      11: "Kate",
-      12: "Liam",
-      13: "Mia",
-      14: "Noah",
-      15: "Olivia",
-      16: "Paul",
-      17: "Quinn",
-      18: "Rosa",
-      19: "Sam",
-      20: "Tina",
-      21: "Uma",
-      22: "Victor",
-      23: "Wendy",
-      24: "Yara",
-      25: "Zane"
-    };
+    const adventNames = {1: 'Julia',
+            2: 'Erin',
+            3: 'Julia',
+            4: 'Tobi',
+            5: 'Lina',
+            6: 'Dominic',
+            7: 'Tobi',
+            8: 'Sebastian',
+            9: 'Cristina',
+            10: 'Julia',
+            11: 'Lina',
+            12: 'Erin',
+            13: 'Lina',
+            14: 'Erin',
+            15: 'Sebastian',
+            16: 'Cristina',
+            17: 'Tobi',
+            18: 'Julia',
+            19: 'Dominic',
+            20: 'Cristina',
+            21: 'Sebastian',
+            22: 'Dominic',
+            23: 'Erin',
+            24: 'Cristina'};
 
     function updateAdventName(date = new Date()) {
       const dateText = document.getElementById("dateText");
