@@ -348,7 +348,7 @@
     18: "The Jores Lab Advent Calendar, the only reason to get up in the morning!",
     19: "Yeah, having an advent calendar is nice, but what about the molecular mechanism?",
     20: "It's beginning to look a lot like christmas!",
-    21: "Is this the sound of christmas bells? No, it's my primers crying (poorly designed maybe)"
+    21: "Is this the sound of christmas bells? No, it's my primers crying (poorly designed maybe)",
     22: "My christmas puns are tree-mendous!",
     23: "Put some Glühwein into your Agar plates, 10/10 experience!",
     24: "Merry Christmas everyone!"
@@ -359,7 +359,7 @@
         const dateText = document.getElementById("dateText");
         const nameText = document.getElementById("nameText");
         const noticeText = document.getElementById("noticeText");
-        const subtitleText = document.getElementById("subtitleText"); // NEW
+        const subtitleText = document.getElementById("subtitleText"); 
 
         const day = date.getDate();
         const month = date.getMonth(); // 0 = Jan, 11 = Dec
@@ -378,7 +378,7 @@
             noticeText.textContent = "No name assigned for this December day.";
         } else {
             nameText.textContent = "—";
-            noticeText.textContent = "Advent names start in December.";
+            noticeText.textContent = "Please wait, the christmas elves are preparing the calendar!";
         }
 
         // NEW: update subtitle based on day
