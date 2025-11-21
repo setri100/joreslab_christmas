@@ -328,30 +328,30 @@
 
 
     const adventSubtitles = {
-    1: "A gentle start to December",
+    1: "Welcome to the christmas calendar!",
     2: "Warm lights, cool science",
-    3: "Cocoa, cultures & curiosity",
-    4: "A sprinkle of seasonal spirit",
-    5: "Beakers, branches & brightness",
-    6: "A calm winter lab morning",
-    7: "Soft snow & sharp minds",
-    8: "Cozy experiments today",
-    9: "Whispers of pine & data",
+    3: "Are you excited yet?",
+    4: "May this advent calendar bring us all together like good 'ol T4 ligase!",
+    5: "Thanks to our sponsor: TONY'S Chocloate!",
+    6: "Ho, Ho, Ho!",
+    7: "May all your PCRs run smoothly today!",
+    8: "All I want for christmas is y... Ah, I'll take some positive some colonies!",
+    9: "No volounteer? Then I'll draw from the jar!",
     10: "Glühwein vibes, lab style",
-    11: "Golden hours in the lab",
-    12: "Halfway to holiday cheer",
-    13: "Pastel lights & peaceful pipettes",
-    14: "Winter warmth in every sample",
-    15: "A festive flow of ideas",
-    16: "Where science meets candlelight",
-    17: "Soft greens, soft gradients",
-    18: "Calm before the holiday rush",
-    19: "Winter quiet, lab focus",
-    20: "A touch of red & gold",
-    21: "Shortest day, brightest thoughts",
-    22: "Warm tea, warm hearts",
-    23: "Almost there — breathe & enjoy",
-    24: "Christmas Eve glow ✨"
+    11: "Wishing you golden hours in the lab",
+    12: "Hopefully seminar isn't too long today...",
+    13: "Enjoy the weekend!",
+    14: "Better use hand santa-tizer today!",
+    15: "I really liked your slide design!",
+    16: "Christmas Party Time!",
+    17: "Is this the scent of Christmas? - No, it's Agrobacteria...",
+    18: "The Jores Lab Advent Calendar, the only reason to get up in the morning!",
+    19: "Yeah, having an advent calendar is nice, but what about the molecular mechanism?",
+    20: "It's beginning to look a lot like christmas!",
+    21: "Is this the sound of christmas bells? No, it's my primers crying (poorly designed maybe)"
+    22: "My christmas puns are tree-mendous!",
+    23: "Put some Glühwein into your Agar plates, 10/10 experience!",
+    24: "Merry Christmas everyone!"
     };
 
 
@@ -370,10 +370,10 @@
             day: "numeric"
         });
 
-        if (month === 11 && adventNames[day]) {
+        if (month === 10 && adventNames[day]) {
             nameText.textContent = adventNames[day];
             noticeText.textContent = "";
-        } else if (month === 11) {
+        } else if (month === 10) {
             nameText.textContent = "—";
             noticeText.textContent = "No name assigned for this December day.";
         } else {
@@ -382,10 +382,10 @@
         }
 
         // NEW: update subtitle based on day
-        if (month === 11 && adventSubtitles[day]) {
+        if (month === 10 && adventSubtitles[day]) {
             subtitleText.textContent = adventSubtitles[day];
         } else {
-            subtitleText.textContent = "Boho Christmas Calendar"; // fallback text
+            subtitleText.textContent = "Jores Lab Christmas Calendar"; // fallback text
         }
         }   
 
