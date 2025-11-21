@@ -280,8 +280,8 @@
 </head>
 <body>
   <div class="card">
-    <div class="title">Advent</div>
-    <div class="subtitle">The Jores Lab Christmas Calendar</div>
+    <div class="title">The Jores Lab Christmas Calendar</div>
+    <div class="subtitle" id="subtitleText">Test</div>
     <div class="divider"></div>
 
     <div class="date" id="dateText"></div>
@@ -294,9 +294,6 @@
     <div class="actions">
       <button class="btn btn-primary" id="snowButton">
         ❄ Let it snow
-      </button>
-      <button class="btn btn-ghost" id="revealButton">
-        ⟳ Recheck today
       </button>
       <div class="hint"></div>
     </div>
@@ -329,31 +326,68 @@
             23: 'Erin',
             24: 'Cristina'};
 
+
+    const adventSubtitles = {
+    1: "A gentle start to December",
+    2: "Warm lights, cool science",
+    3: "Cocoa, cultures & curiosity",
+    4: "A sprinkle of seasonal spirit",
+    5: "Beakers, branches & brightness",
+    6: "A calm winter lab morning",
+    7: "Soft snow & sharp minds",
+    8: "Cozy experiments today",
+    9: "Whispers of pine & data",
+    10: "Glühwein vibes, lab style",
+    11: "Golden hours in the lab",
+    12: "Halfway to holiday cheer",
+    13: "Pastel lights & peaceful pipettes",
+    14: "Winter warmth in every sample",
+    15: "A festive flow of ideas",
+    16: "Where science meets candlelight",
+    17: "Soft greens, soft gradients",
+    18: "Calm before the holiday rush",
+    19: "Winter quiet, lab focus",
+    20: "A touch of red & gold",
+    21: "Shortest day, brightest thoughts",
+    22: "Warm tea, warm hearts",
+    23: "Almost there — breathe & enjoy",
+    24: "Christmas Eve glow ✨"
+    };
+
+
     function updateAdventName(date = new Date()) {
-      const dateText = document.getElementById("dateText");
-      const nameText = document.getElementById("nameText");
-      const noticeText = document.getElementById("noticeText");
+        const dateText = document.getElementById("dateText");
+        const nameText = document.getElementById("nameText");
+        const noticeText = document.getElementById("noticeText");
+        const subtitleText = document.getElementById("subtitleText"); // NEW
 
-      const day = date.getDate();
-      const month = date.getMonth(); // 0 = Jan, 11 = Dec
+        const day = date.getDate();
+        const month = date.getMonth(); // 0 = Jan, 11 = Dec
 
-      dateText.textContent = date.toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      });
+        dateText.textContent = date.toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
 
-      if (month === 10 && adventNames[day]) {
-        nameText.textContent = adventNames[day];
-        noticeText.textContent = "";
-      } else if (month === 10) {
-        nameText.textContent = "—";
-        noticeText.textContent = "No name assigned for this December day.";
-      } else {
-        nameText.textContent = "—";
-        noticeText.textContent = "Advent names start in December.";
-      }
-    }
+        if (month === 11 && adventNames[day]) {
+            nameText.textContent = adventNames[day];
+            noticeText.textContent = "";
+        } else if (month === 11) {
+            nameText.textContent = "—";
+            noticeText.textContent = "No name assigned for this December day.";
+        } else {
+            nameText.textContent = "—";
+            noticeText.textContent = "Advent names start in December.";
+        }
+
+        // NEW: update subtitle based on day
+        if (month === 11 && adventSubtitles[day]) {
+            subtitleText.textContent = adventSubtitles[day];
+        } else {
+            subtitleText.textContent = "Boho Christmas Calendar"; // fallback text
+        }
+        }   
 
     // Snow "confetti" effect
     function createSnowflake() {
