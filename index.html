@@ -52,7 +52,6 @@
       isolation: isolate;
     }
 
-    /* subtle “paper” texture frame */
     .card::before {
       content: "";
       position: absolute;
@@ -62,7 +61,6 @@
       pointer-events: none;
     }
 
-    /* decorative greenery + bow */
     .card::after {
       content: "";
       position: absolute;
@@ -227,7 +225,6 @@
       opacity: 0.9;
     }
 
-    /* Snowflakes */
     .snowflake {
       position: fixed;
       top: -10px;
@@ -296,99 +293,110 @@
       <button class="btn btn-primary" id="snowButton">
         ❄ Let it snow
       </button>
-      <div class="hint"></div>
+
+      <!-- NEW back button -->
+      <button class="btn btn-ghost" id="prevDayButton">
+        ← Previous day
+      </button>
+
+      <div class="hint">
+        Use "Previous day" to see who had the Türchen on earlier days (e.g. weekend).
+      </div>
     </div>
   </div>
 
   <script>
     // Map day of December -> name
-    const adventNames = {1: 'Julia',
-            2: 'Erin',
-            3: 'Julia',
-            4: 'Tobi',
-            5: 'Lina',
-            6: 'Dominic',
-            7: 'Tobi',
-            8: 'Sebastian',
-            9: 'Cristina',
-            10: 'Julia',
-            11: 'Lina',
-            12: 'Erin',
-            13: 'Lina',
-            14: 'Erin',
-            15: 'Sebastian',
-            16: 'Cristina',
-            17: 'Tobi',
-            18: 'Julia',
-            19: 'Dominic',
-            20: 'Cristina',
-            21: 'Sebastian',
-            22: 'Dominic',
-            23: 'Erin',
-            24: 'Cristina'};
-
-
-    const adventSubtitles = {
-    1: "Welcome to the christmas calendar!",
-    2: "Warm lights, cool science",
-    3: "Are you excited yet?",
-    4: "May this advent calendar bring us all together like good 'ol T4 ligase!",
-    5: "Thanks to our sponsor: TONY'S Chocloate!",
-    6: "Ho, Ho, Ho!",
-    7: "May all your PCRs run smoothly today!",
-    8: "All I want for christmas is y... Ah, I'll take some positive some colonies!",
-    9: "No volounteer? Then I'll draw from the jar!",
-    10: "Glühwein vibes, lab style",
-    11: "Wishing you golden hours in the lab",
-    12: "Hopefully seminar isn't too long today...",
-    13: "Enjoy the weekend!",
-    14: "Better use hand santa-tizer today!",
-    15: "I really liked your slide design!",
-    16: "Christmas Party Time!",
-    17: "Is this the scent of Christmas? - No, it's Agrobacteria...",
-    18: "The Jores Lab Advent Calendar, the only reason to get up in the morning!",
-    19: "Yeah, having an advent calendar is nice, but what about the molecular mechanism?",
-    20: "It's beginning to look a lot like christmas!",
-    21: "Is this the sound of christmas bells? No, it's my primers crying (poorly designed maybe)",
-    22: "My christmas puns are tree-mendous!",
-    23: "Put some Glühwein into your Agar plates, 10/10 experience!",
-    24: "Merry Christmas everyone!"
+    const adventNames = {
+      1: 'Julia',
+      2: 'Erin',
+      3: 'Julia',
+      4: 'Tobi',
+      5: 'Lina',
+      6: 'Dominic',
+      7: 'Tobi',
+      8: 'Sebastian',
+      9: 'Cristina',
+      10: 'Julia',
+      11: 'Lina',
+      12: 'Erin',
+      13: 'Lina',
+      14: 'Erin',
+      15: 'Sebastian',
+      16: 'Cristina',
+      17: 'Tobi',
+      18: 'Julia',
+      19: 'Dominic',
+      20: 'Cristina',
+      21: 'Sebastian',
+      22: 'Dominic',
+      23: 'Erin',
+      24: 'Cristina'
     };
 
+    const adventSubtitles = {
+      1: "Welcome to the christmas calendar!",
+      2: "Warm lights, cool science",
+      3: "Are you excited yet?",
+      4: "May this advent calendar bring us all together like good 'ol T4 ligase!",
+      5: "Thanks to our sponsor: TONY'S Chocloate!",
+      6: "Ho, Ho, Ho!",
+      7: "May all your PCRs run smoothly today!",
+      8: "All I want for christmas is y... Ah, I'll take some positive some colonies!",
+      9: "No volounteer? Then I'll draw from the jar!",
+      10: "Glühwein vibes, lab style",
+      11: "Wishing you golden hours in the lab",
+      12: "Hopefully seminar isn't too long today...",
+      13: "Enjoy the weekend!",
+      14: "Better use hand santa-tizer today!",
+      15: "I really liked your slide design!",
+      16: "Christmas Party Time!",
+      17: "Is this the scent of Christmas? - No, it's Agrobacteria...",
+      18: "The Jores Lab Advent Calendar, the only reason to get up in the morning!",
+      19: "Yeah, having an advent calendar is nice, but what about the molecular mechanism?",
+      20: "It's beginning to look a lot like christmas!",
+      21: "Is this the sound of christmas bells? No, it's my primers crying (poorly designed maybe)",
+      22: "My christmas puns are tree-mendous!",
+      23: "Put some Glühwein into your Agar plates, 10/10 experience!",
+      24: "Merry Christmas everyone!"
+    };
 
-    function updateAdventName(date = new Date()) {
-        const dateText = document.getElementById("dateText");
-        const nameText = document.getElementById("nameText");
-        const noticeText = document.getElementById("noticeText");
-        const subtitleText = document.getElementById("subtitleText"); 
+    // Keeps track of which date is currently shown
+    let currentDate = new Date();
 
-        const day = date.getDate();
-        const month = date.getMonth(); // 0 = Jan, 11 = Dec
+    function updateAdventName(date) {
+      const dateText = document.getElementById("dateText");
+      const nameText = document.getElementById("nameText");
+      const noticeText = document.getElementById("noticeText");
+      const subtitleText = document.getElementById("subtitleText");
 
-        dateText.textContent = date.toLocaleDateString(undefined, {
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-        });
+      const day = date.getDate();
+      const month = date.getMonth(); // 0 = Jan, 11 = Dec
 
-        if (month === 11 && adventNames[day]) {
-            nameText.textContent = adventNames[day];
-            noticeText.textContent = "";
-        } else if (month === 11) {
-            nameText.textContent = "—";
-            noticeText.textContent = "No name assigned for this December day.";
-        } else {
-            nameText.textContent = "—";
-            noticeText.textContent = "Please wait, the christmas elves are preparing the calendar!";
-        }
+      dateText.textContent = date.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
 
-        // NEW: update subtitle based on day
-        if (month === 11 && adventSubtitles[day]) {
-            subtitleText.textContent = adventSubtitles[day];
-        } else {
-            subtitleText.textContent = "Jores Lab Christmas Calendar"; // fallback text
-        }
-        }   
+      if (month === 11 && adventNames[day]) {
+        nameText.textContent = adventNames[day];
+        noticeText.textContent = "";
+      } else if (month === 11) {
+        nameText.textContent = "—";
+        noticeText.textContent = "No name assigned for this December day.";
+      } else {
+        nameText.textContent = "—";
+        noticeText.textContent = "Please wait, the christmas elves are preparing the calendar!";
+      }
+
+      // update subtitle based on day
+      if (month === 11 && adventSubtitles[day]) {
+        subtitleText.textContent = adventSubtitles[day];
+      } else {
+        subtitleText.textContent = "Jores Lab Christmas Calendar"; // fallback text
+      }
+    }
 
     // Snow "confetti" effect
     function createSnowflake() {
@@ -407,7 +415,6 @@
       snowflake.style.animationDuration = duration + "s";
       snowflake.style.animationDelay = delay + "s";
 
-      // slight custom drift using CSS variable
       snowflake.style.setProperty("--drift", horizontalDrift + "px");
 
       document.body.appendChild(snowflake);
@@ -420,22 +427,31 @@
     function letItSnow() {
       const flakes = 90;
       for (let i = 0; i < flakes; i++) {
-        setTimeout(createSnowflake, i * 60); // stagger them
+        setTimeout(createSnowflake, i * 60);
       }
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      updateAdventName();
+      // initialize with today's date
+      currentDate = new Date();
+      updateAdventName(currentDate);
 
       const snowButton = document.getElementById("snowButton");
-      const revealButton = document.getElementById("revealButton");
+      const prevDayButton = document.getElementById("prevDayButton");
+      const revealButton = document.getElementById("revealButton"); // still optional / unused
 
       snowButton?.addEventListener("click", () => {
         letItSnow();
       });
 
+      // NEW: go one day back each click
+      prevDayButton?.addEventListener("click", () => {
+        currentDate.setDate(currentDate.getDate() - 1);
+        updateAdventName(currentDate);
+      });
+
       revealButton?.addEventListener("click", () => {
-        updateAdventName();
+        updateAdventName(currentDate);
       });
     });
   </script>
