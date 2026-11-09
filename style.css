@@ -60,7 +60,14 @@ body::after { right: -18vw; bottom: -22vw; }
   text-align: center;
   text-transform: uppercase;
 }
-.eyebrow-star { color: var(--gold); margin: 0 .45em; }
+.eyebrow-star {
+  display: inline-block;
+  width: .7em;
+  height: .7em;
+  margin: 0 .45em;
+  background: var(--gold);
+  clip-path: polygon(50% 0, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0 50%, 42% 42%);
+}
 
 .calendar-card {
   width: 100%;
@@ -213,7 +220,7 @@ h1 em { color: var(--red); font-weight: 400; }
 .footer-note a { color: var(--red-deep); font-weight: 700; text-underline-offset: 3px; }
 .footer-note a:hover { color: var(--green); }
 
-.weather-layer { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.weather-layer { position: fixed; inset: 0; z-index: 2; overflow: hidden; pointer-events: none; }
 .particle { position: absolute; top: -32px; left: var(--left); pointer-events: none; animation: snowfall var(--duration) linear forwards; }
 .particle.snow { color: #8caeb1; font-size: var(--size); opacity: .9; text-shadow: 0 1px 0 white; }
 .particle.rain { width: 2px; height: var(--size); border-radius: 2px; background: rgba(89, 135, 163, .58); animation-name: rainfall; }
