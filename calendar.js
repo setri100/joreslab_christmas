@@ -67,7 +67,7 @@ const testAdventInNovember = true; // Set to false to show the elves' message in
 function updateCalendar() {
   const day = currentDate.getDate();
   const month = currentDate.getMonth();
-  const isAdventDay = (month === 11 || (testAdventInNovember && month === 10)) && day <= 24;
+  const isAdventDay = (month === 11 || (testAdventInNovember && month === 11)) && day <= 24;
 
   dateText.textContent = currentDate.toLocaleDateString(undefined, {
     year: 'numeric', month: 'long', day: 'numeric'
