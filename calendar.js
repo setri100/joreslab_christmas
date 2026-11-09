@@ -63,6 +63,7 @@ const weatherLayer = document.getElementById('weatherLayer');
 const continuous = document.body.dataset.weather === 'continuous';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const testAdventInNovember = true; // Set to false to show the elves' message in November.
+const snowflakeIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9 4.9 19.1M9.5 4.5 12 7l2.5-2.5M9.5 19.5 12 17l2.5 2.5M4.5 9.5 7 12l-2.5 2.5M19.5 9.5 17 12l2.5 2.5"/></svg>';
 
 function updateCalendar() {
   const day = currentDate.getDate();
@@ -87,7 +88,7 @@ function createParticle(type, fillScreen = false) {
   const particle = document.createElement('span');
   const duration = type === 'rain' ? 1.1 + Math.random() * .7 : 5 + Math.random() * 4;
   particle.className = `particle ${type}`;
-  if (type === 'snow') particle.textContent = Math.random() < .5 ? '✳' : '✻';
+  if (type === 'snow') particle.innerHTML = snowflakeIcon;
   particle.style.setProperty('--left', `${Math.random() * 100}%`);
   particle.style.setProperty('--size', type === 'rain'
     ? `${12 + Math.random() * 16}px`
@@ -106,8 +107,8 @@ function updateWeatherButton() {
   if (!continuous) return;
   snowButton.innerHTML = weatherMode === 'snow'
     ? '<span aria-hidden="true">✦</span> Stop snow'
-    : '<span aria-hidden="true">❄</span> Ok, snow was better';
-  if (weatherMode === 'idle') snowButton.innerHTML = '<span aria-hidden="true">❄</span> Let it snow';
+    : `${snowflakeIcon} Ok, snow was better`;
+  if (weatherMode === 'idle') snowButton.innerHTML = `${snowflakeIcon} Let it snow`;
 }
 
 function setWeather(mode) {
